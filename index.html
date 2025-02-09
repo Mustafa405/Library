@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+
+<script>
+    //localStorage.clear();
+    let username="admin";
+    let password="123";
+
+
+    let verification={loggedin:false}
+
+
+    let home=document.getElementById("main").innerHTML;
+
+    
+
+    sessionStorage.setItem("verification",JSON.stringify(verification))
+    home=document.getElementById("main").innerHTML
+    function loggedin()
+    {   
+        u=document.getElementById("username").value
+        p=document.getElementById("password").value
+        books=[]
+        newBook= {
+        bookname:"Rich Dad Poor Dad",
+        bookid:"101",
+        bookauthor:"R Kiyosaki",
+        bookgenre:"economics",
+        bookavailable:"yes",
+        bookholder:"",
+        booktakendate:""
+    }
+    books.push(newBook)
+    localStorage.setItem("books",JSON.stringify(books))
+
+        students=[]
+        newStudent= {
+            studentname:"Shaik Mustafa",
+            studentid:"405",
+            studentdepartment:"ECE",
+            studentbooks:[]
+        }
+        students.push(newStudent)
+        localStorage.setItem("students",JSON.stringify(students))
+        if(username==u && password==p)
+        {
+            document.getElementById("main").innerHTML="<h5>Welcome to Library Management System!<br><br>This project aims to provide a comprehensive platform for managing library operations, including book cataloging, borrowing, and returning. The system is designed to streamline tasks, enhance productivity, and improve the overall library experience.<br><br>Key features include:<br><br>- Book management: cataloging, searching, and tracking<br>- Borrowing and returning: managing book lending and returning processes<br>- Student management: tracking student information and borrowing history<br>- Reporting and analytics: generating reports on library usage and trends<br><br>Note: This application uses local storage to store data, allowing for offline functionality and faster data retrieval.<br><br>This project is developed with the goal of providing a user-friendly and efficient library management system.<br><br>Copyright 2025 : Shaik Mohammed Mustafa <br><br>Connect with me:<br><br>-<a href='https://www.linkedin.com/in/mustafa405'>LinkedIn</a><br>-<a href='https://www.github.com/mustafa405'>GitHub</a></h3>";
+            verification={loggedin:true}
+            sessionStorage.setItem("verification",JSON.stringify(verification))
+
+            document.getElementById("borrow").style.visibility="visible";
+            document.getElementById("return").style.visibility="visible";
+            document.getElementById("manageB").style.visibility="visible";
+            document.getElementById("manageS").style.visibility="visible";
+        }
+        else
+        {
+            alert("Invalid Username/Password")
+            verification={loggedin:false}
+            sessionStorage.setItem("verification",JSON.stringify(verification))
+        }
+    }
+
+    function homee()
+    {
+        if (JSON.parse(sessionStorage.getItem("verification")).loggedin==true)
+        {
+            document.getElementById("main").innerHTML="<h3>Welcome to the Website</h3>";
+
+            document.getElementById("borrow").style.visibility="visible";
+            document.getElementById("return").style.visibility="visible";
+            document.getElementById("manageB").style.visibility="visible";
+            document.getElementById("manageS").style.visibility="visible";
+        }
+    }
+</script>
+</head>
+<body>
+    <header id="header"><b>Library Management System</b></header>
+    <hr>
+    <nav id="navbar">
+        <button id="home" class="navs" onclick="homee()" style="background-color: hsl(145, 80%, 63%);"><a>Home</a></button>
+        <button id="borrow" class="navs"><a href="borrow.html">Borrow</a></button>
+        <button id="return" class="navs"><a href="return.html">Return</a></button>
+        <button id="manageB" class="navs"><a href="manageB.html">Manage Books</a></button>
+        <button id="manageS" class="navs"><a href="manageS.html">Manage Students</a></button>
+    </nav>
+    <hr>
+    <main id="main">
+        
+        <div id="login">
+            <h3 style="color:white;background-color:hsl(214, 100%, 28%);" id="h3Login">Login</h3>
+            <form action="" id="loginform">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+                <br>
+                <br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required> 
+                <br><br>
+                <button id="submit" onclick="loggedin()">Submit</button>   
+            </form>
+        </div>
+    </main>
+</body>
+</html>

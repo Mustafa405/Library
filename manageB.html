@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        
+
+        function viewallbooks()
+        {
+                books=JSON.parse(localStorage.getItem("books"));
+                let i=0;
+                document.getElementById("divbookshell").innerHTML=""
+                while(i<books.length)
+                {
+                        let bname=books[i].bookname
+                        let bid=books[i].bookid
+                        let bAvailability=books[i].bookavailable
+                        newBookHTML="<div class='book'> <div class='bookimage'></div> <p class='bookinfo'>"+bname+"<br>Book ID : "+bid+"<br>Book Availability : "+bAvailability+"</p></div>";
+                        document.getElementById("divbookshell").innerHTML+=newBookHTML
+                    i+=1;
+                }
+        }
+
+
+
+
+
+
+
+        function addbook()
+        {
+            if (document.getElementById("divaddbook").style.display=="none")
+            {
+                document.getElementById("divaddbook").style.display='block';
+            }
+            else
+            {
+                document.getElementById("divaddbook").style.display="none";
+            }
+        }
+
+        function deletebook()
+        {
+            if (document.getElementById("divdeletebook").style.display=="none")
+            {
+                document.getElementById("divdeletebook").style.display='block';
+            }
+            else
+            {
+                document.getElementById("divdeletebook").style.display="none";
+            }
+        }
+
+
+        function addbookconfirm()
+        {
+            bname=document.getElementById("bookname").value;
+            bid=document.getElementById("bookid").value;
+            bauthor=document.getElementById("author").value;
+            bgenre=document.getElementById("genre").value;
+            bAvailability=document.getElementById("isAvailable").value;
+            
+            books=JSON.parse(localStorage.getItem("books"))
+            let i=0;
+            let available=1;
+            while(i<books.length)
+            {
+                if(books[i].bookid==bid)
+                {
+                    alert("Book Already Exists"+"\n"+books[i].bookname)
+                    available=0;
+                }
+                i+=1;
+            }
+
+        if (available==1)
+                    {
+                        newBook= {
+                    bookname:bname,
+                    bookid:bid,
+                    bookauthor:author,
+                    bookgenre:genre,
+                    bookavailable:bAvailability,
+                    bookholder:"" }
+
+                    books.push(newBook)
+
+                    localStorage.setItem("books",JSON.stringify(books))
+                    alert("Book Added Successfully")
+                    viewallbooks()
+                    }
+        }
+
+        function deletebookconfirm()
+        {
+            bid=document.getElementById("deletebid").value
+
+            books=JSON.parse(localStorage.getItem("books"))
+            let i=0;
+            let removed=false;
+            let found=false;
+            while(i<books.length)
+            {
+                if(books[i].bookid==bid)
+                {
+                    removed=confirm("Do you want to Delete "+books[i].bookname)
+                    books.splice(i,1);
+                    found=true;
+                }
+                i+=1;
+            }
+
+            if (removed==true)
+                {
+                    localStorage.setItem("books",JSON.stringify(books))
+                    alert("Book Deleted Successfully")
+                    viewallbooks()
+                }
+            else if(removed==false && found==false)
+            {
+                alert("Book not found")
+            }
+        }
+
+        function searchbook()
+        {
+                bid=document.getElementById("searchinput").value;
+                books=JSON.parse(localStorage.getItem("books"))
+                let i=0;
+                found=0;
+                while(i<books.length)
+                {
+                    if(books[i].bookid==bid)
+                    {
+                        alert("Book Name : "+books[i].bookname+"\n"+"Book ID : "+books[i].bookid+"\n"+"Is Available : "+books[i].bookavailable+"\n"+"Book Holder : "+books[i].bookholder+"\nBook Taken Date : "+books[i].booktakendate)
+                        found=1;
+                    }
+                    i+=1;
+                } 
+                if(found==0)
+                {
+                    alert("Book Not Found")
+                }
+        }
+
+
+        
+    </script>
+</head>
+<body>
+    <header id="header"><b>Library Management System</b></header>
+    <hr>
+    <nav id="navbar4">
+        <button id="home" class="navs4" onclick="homee()"><a href="index.html">Home</a></button>
+        <button id="borrow" class="navs4"><a href="borrow.html">Borrow</a></button>
+        <button id="return" class="navs4"><a href="return.html">Return</a></button>
+        <button id="manageB" class="navs4" style="background-color: hsl(145, 80%, 63%);"><a href="manageB.html">Manage Books</a></button>
+        <button id="manageS" class="navs4"><a href="manageS.html">Manage Students</a></button>
+    </nav>
+    <hr>
+    <main id="main4">
+        <h3>Manage Books</h3>
+        <button id="addbook" onclick="addbook()">Add Book</button>
+        <br>
+        <br>
+        <diV id="divaddbook">
+            
+            <br>
+                <label for="bookname">Book Name :</label>
+                <input type="text" id="bookname" required>
+                <br>
+                <label for="bookid">Book ID :</label>
+                <input type="text" id="bookid" required>
+                <br>
+                <label for="author">Author :</label>
+                <input type="text" id="author" required>
+                <br>
+                <label for="genre">Genre :</label>
+                <input type="text" id="genre" required>
+                <br>
+                <label for="isAvailable">Is Available :</label>
+                <select id="isAvailable" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+                <br>
+                <br>
+
+                <button id="addbookconfirm" onclick="addbookconfirm()">Submit</button> 
+                
+            
+                
+        </div>
+
+
+        <br>
+        <br>
+
+
+
+        <button id="deletebook" onclick="deletebook()">Delete Book</button>
+        <br>
+        <br>
+        <div id="divdeletebook">
+            <br>
+                <label for="deletebid">Book ID :</label>
+                <input type="text" id="deletebid">
+                <br>
+                <br>
+                <button id="deletebookconfirm" onclick="deletebookconfirm()">Submit</button>
+        </div>
+        <br>
+        <div id="divsearch">
+            <input type="text" placeholder="Book ID" id="searchinput">
+            <button id="searchbook" onclick="searchbook()">Search</button>
+        </div>
+
+        <br><br>
+
+        <button id="viewallbooks" onclick="viewallbooks()">View All Books</button>
+
+        <br><br>
+
+        <div id="divbookshell">
+            
+        </div>
+
+        <br>
+        <br>
+        
+    </main>
+</body>
+</html>

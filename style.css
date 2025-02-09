@@ -1,0 +1,539 @@
+#header
+{
+    color:hsl(220, 100%, 38%);
+    font-family:garamond,'Times New Roman', Times, serif;
+    background-color:rgba(240, 238, 150, 0.932);
+    text-align: center;
+    font-size:4vh;
+    border-radius: 1vh;
+    box-shadow:0.7vh 0.7vh 2vh rgb(0, 0, 0);
+}
+hr
+{
+    color:black;
+    max-height: 2vh;
+}
+body 
+{
+    background:linear-gradient(90deg,#50f55e,rgb(8, 201, 235));
+    font-family:garamond,'Times New Roman', Times, serif;
+    font-size: 3vh;
+    
+}
+#navbar
+{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: hsl(214, 100%, 28%);
+}
+.navs
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:2vh;
+    border:0.5vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+}
+.navs a
+{
+    color:white;
+    text-decoration: none;  
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#login
+{
+    background-color: crimson;
+    width:40%;
+    height: 40vh;
+    margin-left:30%;
+    text-align: center;
+    font-size: 3vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    border-radius: 2vh;
+}
+#login label
+{
+    color:hsl(145, 100%, 73%);
+    height: 5vh;
+    width:80%;
+    font-size: 3vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#login input
+{
+    width:50%;
+    height: 3vh;
+    font-size: 2.5vh;
+    font-family:'Times New Roman', Times, serif;
+}
+#login button
+{
+    width:60%;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius:1vh;
+    color:rgb(0, 0, 0);
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    font-weight: bold;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }  
+}
+#navbar #borrow,#return,#manageB,#manageS
+{
+    visibility: hidden;
+}
+/*---------------------------------------------------*/
+
+#navbar2
+{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: hsl(214, 100%, 28%);
+}
+.navs2
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border:0.5vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+}
+.navs2 a
+{
+    color:white;
+    text-decoration: none;  
+}
+#navbar2 button
+{
+    visibility:visible;
+}
+/*---------------------------------------------------------------*/
+#navbar3
+{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: hsl(214, 100%, 28%);
+}
+.navs3
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border:0.5vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+}
+.navs3 a
+{
+    color:white;
+    text-decoration: none;  
+}
+#navbar3 button
+{
+    visibility:visible;
+}
+
+/*-----------------------------------------------------------------*/
+
+/*---------------------------------------------------------------*/
+#navbar4
+{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: hsl(214, 100%, 28%);
+}
+.navs4
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border:0.5vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+}
+.navs4 a
+{
+    color:white;
+    text-decoration: none;  
+}
+#navbar4 button
+{
+    visibility:visible;
+}
+#addbook
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border: 0.2vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }  
+}
+#divaddbook
+{
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    background-color: aquamarine;
+    color:darkred;
+    display:flex;
+    justify-content: center;
+    width:50%;
+    display: none;
+    font-family:garamond,'Times New Roman', Times, serif;
+    padding-left: 5%;
+}
+#divaddbook label
+{
+    display:inline-block;
+    min-width: 50%;
+    font-size: 3vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divaddbook input
+{
+    font-size: 3vh;
+    height: 2.5vh;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    max-width: 70%;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divaddbook select
+{
+    font-size: 2vh;
+    height: 3vh;
+    border: 0.2vh solid black;
+    width: 30%;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divaddbook button
+{
+    width:40%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1;
+    color:white;
+    height:6vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    font-size:2vh;
+    border: 0.2vh solid black;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }  
+}
+
+
+#deletebook
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border: 0.2vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }  
+}
+
+#divdeletebook
+{
+    border: 0.2vh solid black;
+    background-color: aquamarine;
+    color:darkred;
+    display:flex;
+    justify-content:center;
+    width:50%;
+    display: none;
+    font-family:garamond,'Times New Roman', Times, serif;
+    padding-left: 5%;
+}
+#divdeletebook label
+{
+    display:inline-block;
+    min-width: 50%;
+    font-size: 3vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divdeletebook input
+{
+    font-size: 2vh;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    max-width: 70%;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divdeletebook button
+{
+    width:40%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border: 0.2vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }    
+}
+
+#divsearch
+{
+    position:fixed;
+    top:20vh;
+    right:5%;
+    background-color:aquamarine;
+    height:7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:30%;
+    border: 0.2vh solid black;
+    border-radius: 0.5vh;
+    box-shadow: 0px 0px 1vh black;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divsearch input
+{
+    font-size:2vh;
+    border: 0.1vh solid black;
+    width:50%;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divsearch button
+{
+    width:40%;
+    text-align: center;
+    background-color: crimson;
+    border: 0.2vh solid black;
+    color:white;
+    height:3vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+}
+
+/*view books*/
+#divbookshell
+{
+    border:0.5vh solid black;
+    background-color: aquamarine;
+    width:98%;
+    height:60vh;
+    display: flex;
+    justify-content:space-evenly;
+    align-content: space-evenly;
+    overflow: auto;
+    flex-wrap:wrap;
+    border-radius:1vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    box-shadow: 0px 0px 1vh rgb(0, 0, 0);
+}
+.book
+{
+    height:30vh;
+    aspect-ratio:3/4;
+    background-color: crimson;
+    margin:2%;
+    display: flex;
+    align-items:flex-end;
+    border-radius:0.5vh;
+    border:0.2vh solid black;
+    box-shadow: 0px 0px 1vh rgb(0, 0, 0);
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+.bookimage
+{
+    background-color: greenyellow;
+    height: 10vh;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-self: flex-start;
+    border-radius:0.5vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+.bookinfo
+{
+    color: white;
+    margin-left: -20%;
+    font-size: 2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+
+
+#viewallbooks
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border: 0.2vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }  
+}
+/*-----------------------------------------------------------------*/
+
+/*---------------------------------------------------------------*/
+#navbar5
+{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: hsl(214, 100%, 28%);
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+.navs5
+{
+    width:19%;
+    text-align: center;
+    background-color: crimson;
+    border-radius:1vh;
+    border:0.5vh solid black;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+}
+.navs5 a
+{
+    color:white;
+    text-decoration: none;  
+}
+#navbar5 button
+{
+    visibility:visible;
+}
+
+#divborrow
+{
+    background-color: aquamarine;
+    border: 0.2vh solid black;
+    width:40%;
+    height: 50vh;
+    overflow:auto;
+    border-radius: 1vh;
+}
+#divborrow label
+{
+    font-size: 3vh;
+    display: inline-block;
+    width:50%;
+    margin-top: 3vh;
+    margin-left: 5%;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divborrow input
+{
+    font-size:2vh;
+    height: 3vh;
+    border: 0.2vh solid black;
+    width:50%;
+    margin-left: 5%;
+    font-family:garamond,'Times New Roman', Times, serif;
+}
+#divborrow button
+{
+    width:40%;
+    text-align: center;
+    background-color: crimson;
+    border: 0.2vh solid black;
+    border-radius:1vh;
+    color:white;
+    height:6vh;
+    font-size:2vh;
+    font-family:garamond,'Times New Roman', Times, serif;
+    overflow:hidden;
+    &:hover
+    {
+        background-color: hsl(348, 83%, 67%);
+    }
+    margin-left: 30%;
+    margin-top: 5vh;
+}
+/*-----------------------------------------------------------------*/
+@media(max-width:600px)
+{
+    #login
+{
+    background-color: crimson;
+    width:70%;
+    height: 40vh;
+    margin-left:15%;
+    text-align: center;
+    font-size: 3vh;
+}
+}
+

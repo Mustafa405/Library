@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+
+function viewallstudents()
+        {
+                students=JSON.parse(localStorage.getItem("students"));
+                let i=0;
+                document.getElementById("divbookshell").innerHTML=""
+                while(i<students.length)
+                {
+                        let sname=students[i].studentname
+                        let sid=students[i].studentid
+                        let sd=students[i].studentdepartment
+                        newStudentHTML="<div class='book'> <div class='bookimage'></div> <p class='bookinfo'>"+sname+"<br>Student ID : "+sid+"<br>Department : "+sd+"</p></div>";
+                        document.getElementById("divbookshell").innerHTML+=newStudentHTML
+                    i+=1;
+                }
+        }
+
+
+
+
+
+
+
+
+        function addstudent()
+        {
+            if (document.getElementById("divaddbook").style.display=="none")
+            {
+                document.getElementById("divaddbook").style.display='block';
+            }
+            else
+            {
+                document.getElementById("divaddbook").style.display="none";
+            }
+        }
+
+        function deletestudent()
+        {
+            if (document.getElementById("divdeletebook").style.display=="none")
+            {
+                document.getElementById("divdeletebook").style.display='block';
+            }
+            else
+            {
+                document.getElementById("divdeletebook").style.display="none";
+            }
+        }
+
+
+        function addstudentconfirm()
+        {
+            sname=document.getElementById("bookname").value;
+            sid=document.getElementById("bookid").value;
+            sd=document.getElementById("author").value;
+            
+            students=JSON.parse(localStorage.getItem("students"))
+            let i=0;
+            let available=1;
+            while(i<students.length)
+            {
+                if(students[i].studentid==sid)
+                {
+                    alert("Student Already Exists"+"\n"+students[i].studentname)
+                    available=0;
+                }
+                i+=1;
+            }
+
+        if (available==1)
+                    {
+                        newStudent= {
+                            studentname:sname,
+                            studentid:sid,
+                            studentdepartment:sd,
+                            studentbooks:[]
+                            }
+
+                    students.push(newStudent)
+
+                    localStorage.setItem("students",JSON.stringify(students))
+                    alert("Student Added Successfully")
+                    viewallstudents()
+                    }
+        }
+
+        function deletestudentconfirm()
+        {
+            sid=document.getElementById("deletebid").value
+
+            students=JSON.parse(localStorage.getItem("students"))
+            let i=0;
+            let removed=false;
+            let found=false;
+            while(i<students.length)
+            {
+                if(students[i].studentid==sid)
+                {
+                    removed=confirm("Do you want to Delete "+students[i].studentname)
+                    students.splice(i,1);
+                    found=true;
+                }
+                i+=1;
+            }
+
+            if (removed==true)
+                {
+                    localStorage.setItem("students",JSON.stringify(students))
+                    alert("Student Deleted Successfully")
+                    viewallstudents()
+                }
+            else if(removed==false && found==false)
+            {
+                alert("Student not found")
+            }
+        }
+
+        function searchstudent()
+        {
+                sid=document.getElementById("searchinput").value;
+                students=JSON.parse(localStorage.getItem("students"))
+                let i=0;
+                found=0;
+                while(i<students.length)
+                {
+                    if(students[i].studentid==sid)
+                    {
+                        alert("Student Name : "+students[i].studentname+"\n"+"Student ID : "+students[i].studentid+"\n"+"Department : "+students[i].studentdepartment+"\n"+"Books Taken : "+students[i].studentbooks)
+                        found=1;
+                    }
+                    i+=1;
+                } 
+                if(found==0)
+                {
+                    alert("Student Not Found")
+                }
+        }
+    </script>
+</head>
+<body>
+    <header id="header"><b>Library Management System</b></header>
+    <hr>
+    <nav id="navbar5">
+        <button id="home" class="navs5" onclick="homee()"><a href="index.html">Home</a></button>
+        <button id="borrow" class="navs5"><a href="borrow.html">Borrow</a></button>
+        <button id="return" class="navs5"><a href="return.html">Return</a></button>
+        <button id="manageB" class="navs5"><a href="manageB.html">Manage Books</a></button>
+        <button id="manageS" class="navs5" style="background-color: hsl(145, 80%, 63%);"><a href="manageS.html">Manage Students</a></button>
+    </nav>
+    <hr>
+    <main id="main4">
+        <h3>Manage Students</h3>
+        <button id="addbook" onclick="addstudent()">Add Student</button>
+        <br>
+        <br>
+        <div id="divaddbook">
+            
+            <br>
+                <label for="bookname">Student Name :</label>
+                <input type="text" id="bookname" required>
+                <br>
+                <label for="bookid">Student ID :</label>
+                <input type="text" id="bookid" required>
+                <br>
+                <label for="author">Department :</label>
+                <select id="author">
+                    <option value="civil">Civil</option>
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+                </select>
+                <br>
+                <br>
+
+                <br>
+                <br>
+
+                <button id="addbookconfirm" onclick="addstudentconfirm()">Submit</button> 
+                
+            
+                
+        </div>
+
+
+        <br>
+        <br>
+
+
+
+        <button id="deletebook" onclick="deletestudent()">Delete Student</button>
+        <br>
+        <br>
+        <div id="divdeletebook">
+            <br>
+                <label for="deletebid">Student ID :</label>
+                <input type="text" id="deletebid">
+                <br>
+                <br>
+                <button id="deletebookconfirm" onclick="deletestudentconfirm()">Submit</button>
+        </div>
+        <br>
+        <div id="divsearch">
+            <input type="text" placeholder="Student ID" id="searchinput">
+            <button id="searchbook" onclick="searchstudent()">Search</button>
+        </div>
+
+        <br><br>
+
+        <button id="viewallbooks" onclick="viewallstudents()">View All Students</button>
+
+        <br><br>
+
+        <div id="divbookshell">
+            
+        </div>
+
+        <br>
+        <br>
+        
+    </main>
+</body>
+</html>

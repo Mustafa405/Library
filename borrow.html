@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+         function viewallbooks()
+        {
+                books=JSON.parse(localStorage.getItem("books"));
+                let i=0;
+                document.getElementById("divbookshell").innerHTML=""
+                while(i<books.length)
+                {
+                        let bname=books[i].bookname
+                        let bid=books[i].bookid
+                        let bAvailability=books[i].bookavailable
+                        newBookHTML="<div class='book'> <div class='bookimage'></div> <p class='bookinfo'>"+bname+"<br>Book ID : "+bid+"<br>Book Availability : "+bAvailability+"</p></div>";
+                        document.getElementById("divbookshell").innerHTML+=newBookHTML
+                    i+=1;
+                }
+        }
+        function confirmborrow()
+        {
+            sid=document.getElementById("studentid").value;
+            bid=document.getElementById("bookid").value;
+
+            //Student Search
+                students=JSON.parse(localStorage.getItem("students"))
+                let i=0;
+                foundS=0;
+                studentindex=null
+                while(i<students.length)
+                {
+                    if(students[i].studentid==sid)
+                    {
+                         foundS=1;
+                         studentindex=i;
+                    }
+                    i+=1;
+                } 
+                if(foundS==0)
+                {
+                    alert("Student Not Found")
+                }
+
+                //Book Search
+                books=JSON.parse(localStorage.getItem("books"))
+                let j=0;
+                foundB=0;
+                bookindex=null
+                while(j<books.length)
+                {
+                    if(books[j].bookid==bid)
+                    {
+                        if(books[j].bookavailable=="yes")
+                        {
+                            foundB=1;
+                            bookindex=j;
+                        }
+                        else
+                        {
+                            alert("Sorry, "+books[j].bookname+" : "+books[j].bookid+" is not Available. Please try again later.")
+                            viewallbooks()
+                            return
+                        }
+                    }
+                    j+=1;
+                } 
+                if(foundB==0)
+                {
+                    alert("Book Not Found")
+                }
+
+
+
+
+
+
+                if(foundB==1 && foundS==1)
+                {
+                    ask=confirm("Dear "+students[studentindex].studentname+", Do you want to borrow "+books[bookindex].bookname+"??")
+                    if(ask==true)
+                    {
+                        students[studentindex].studentbooks.push(bid)
+                        books[bookindex].bookholder=sid
+                        books[bookindex].bookavailable="no"
+                        books[bookindex].booktakendate=Date().slice(0,21)
+
+                        localStorage.setItem("students",JSON.stringify(students))
+                        localStorage.setItem("books",JSON.stringify(books))
+
+                        viewallbooks()
+                    }
+                    else
+                    {
+                        viewallbooks()
+                        return
+                    }
+                }
+        }
+    </script>
+</head>
+<body>
+    <header id="header"><b>Library Management System</b></header>
+    <hr>
+    <nav id="navbar2">
+        <button id="home" class="navs2" onclick="homee()"><a href="index.html">Home</a></button>
+        <button id="borrow" class="navs2" style="background-color: hsl(145, 80%, 63%);"><a href="borrow.html">Borrow</a></button>
+        <button id="return" class="navs2"><a href="return.html">Return</a></button>
+        <button id="manageB" class="navs2"><a href="manageB.html">Manage Books</a></button>
+        <button id="manageS" class="navs2"><a href="manageS.html">Manage Students</a></button>
+    </nav>
+    <hr>
+    <main id="main2">
+        <h3>Borrow Page</h3>
+        <div id="divborrow">
+            <label for="studentid">Student ID :</label>
+            <input type="text" id="studentid">
+            <br><br>
+            <label for="bookid">Book ID :</label>
+            <input type="text" id="bookid">
+            <br><br>
+            <button id="confirmborrow" onclick="confirmborrow()">Confirm</button>
+        </div>
+
+        <br><br>
+        
+        <button id="viewallbooks" onclick="viewallbooks()">View All Books</button>
+
+        <br><br>
+        <div id="divbookshell">
+            
+        </div>
+        
+    </main>
+</body>
+</html>
